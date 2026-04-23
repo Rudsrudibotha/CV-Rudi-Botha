@@ -385,6 +385,10 @@ a:hover { text-decoration: underline; }
     scroll-padding-top: 68px;
   }
 
+  .back-to-top {
+    display: none !important;
+  }
+
   .cv-nav-inner {
     padding: 10px 12px;
     justify-content: flex-end;
