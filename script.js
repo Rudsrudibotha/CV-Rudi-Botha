@@ -41,7 +41,7 @@ const cvData = {
     {
       title: "Education",
       items: [
-        { heading: "Belgium Campus ITversity", detail: "Bachelor of Computing (NQF 8), 2023 - Present", links: [{ label: "Exit Level Outcome", url: "Exit-Level-Outcomes-Bachelor-of-Computing.pdf" }, { label: "Download Transcript", url: "FinalTranscript2025.pdf" }], text: ["1st Year: Business Management 181", "2nd Year: Software Testing", "3rd Year: User Experience Design"] },
+        { heading: "Belgium Campus ITversity", detail: "Bachelor of Computing (NQF 8), 2023 - Present", links: [{ label: "Exit Level Outcome", url: "Exit-Level-Outcomes-Bachelor-of-Computing.pdf" }, { label: "Download Transcript", url: "FinalTranscript2025.pdf" }], text: ["1st Year: Business Management 181", "2nd Year: Software Testing", "3rd Year: User Experience Design", "4th Year: Internship (Automation Engineer at First Technology Digital)"] },
         { heading: "Pretoria North High School", detail: "Matric Certificate, 2014" },
         { heading: "Certifications" },
         { heading: "University of South Africa", bullets: ["Certificate in Business & Economic Management (NQF 5), 2019"] },
