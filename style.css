@@ -207,6 +207,10 @@ a:hover { text-decoration: underline; }
   background: rgba(96, 165, 250, 0.15);
 }
 
+.print-only-link {
+  display: none;
+}
+
 /* ---------- Main Sections ---------- */
 #mainArea {
   padding: 14px 24px 24px;
@@ -447,12 +451,19 @@ a:hover { text-decoration: underline; }
   }
 
   .social-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 5pt;
     padding: 6pt 8pt;
     border-radius: 8px;
     border-color: rgba(96, 165, 250, 0.35);
     background: #0f172a !important;
     color: #e5e7eb !important;
     font-size: 9pt;
+  }
+
+  .print-only-link {
+    display: inline-flex;
   }
 
   .social-btn svg {
