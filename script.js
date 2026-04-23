@@ -463,22 +463,34 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const sections = document.querySelectorAll("#mainArea section");
   let hoveredSection = null;
+  const mobileQuery = window.matchMedia("(max-width: 860px)");
 
   const updateActiveSection = () => {
-    if (hoveredSection) return;
+    if (hoveredSection && !mobileQuery.matches) return;
+    const marker = window.innerHeight * 0.45;
+    let activeSection = sections[0];
+
     sections.forEach((sec) => {
       const rect = sec.getBoundingClientRect();
-      sec.classList.toggle("active", rect.top >= 0 && rect.top < window.innerHeight / 2);
+      if (rect.top <= marker && rect.bottom > marker) {
+        activeSection = sec;
+      }
+    });
+
+    sections.forEach((sec) => {
+      sec.classList.toggle("active", sec === activeSection);
     });
   };
 
   sections.forEach((sec) => {
     sec.addEventListener("mouseenter", () => {
+      if (mobileQuery.matches) return;
       hoveredSection = sec;
       sections.forEach((section) => section.classList.toggle("active", section === sec));
     });
 
     sec.addEventListener("mouseleave", () => {
+      if (mobileQuery.matches) return;
       hoveredSection = null;
       updateActiveSection();
     });
