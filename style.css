@@ -45,19 +45,14 @@ a:hover { text-decoration: underline; }
   padding: 12px 16px;
   display: flex;
   align-items: center;
-  justify-content: space-between;
-}
-
-.cv-nav-brand {
-  font-weight: 800;
-  letter-spacing: -0.02em;
-  color: #e5e7eb;
+  justify-content: center;
 }
 
 .cv-nav-links {
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
+  justify-content: center;
 }
 
 .cv-nav-links a {
@@ -363,9 +358,114 @@ a:hover { text-decoration: underline; }
 
 /* ---------- Mobile ---------- */
 @media (max-width: 860px) {
-  .cv-nav-inner { flex-direction: column; align-items: flex-start; }
-  .mainDetails { grid-template-columns: 90px 1fr; }
-  #mainArea section { grid-template-columns: 1fr; }
+  html {
+    scroll-padding-top: 68px;
+  }
+
+  .cv-nav-inner {
+    padding: 10px 12px;
+    overflow-x: auto;
+    justify-content: flex-start;
+    scrollbar-width: thin;
+  }
+
+  .cv-nav-links {
+    flex-wrap: nowrap;
+    gap: 6px;
+    width: max-content;
+    min-width: 100%;
+    justify-content: flex-start;
+  }
+
+  .cv-nav-links a {
+    flex: 0 0 auto;
+    padding: 7px 10px;
+    font-size: 13px;
+    white-space: nowrap;
+  }
+
+  #cv {
+    margin: 12px auto 36px;
+    padding: 0 12px;
+  }
+
+  #cv > .mainDetails,
+  #cv > .download-buttons,
+  #cv > .social-media,
+  #mainArea {
+    border-radius: 14px;
+  }
+
+  .mainDetails {
+    grid-template-columns: 84px 1fr;
+    gap: 12px;
+    padding: 16px;
+  }
+
+  #headshot {
+    width: 84px;
+    height: 84px;
+    border-radius: 14px;
+  }
+
+  #name h1 {
+    font-size: 32px;
+  }
+
+  #name h2 {
+    font-size: 12px;
+    letter-spacing: 0.08em;
+  }
+
+  #contactDetails ul {
+    display: grid;
+    gap: 6px;
+    font-size: 13px;
+  }
+
+  .download-buttons,
+  .social-media,
+  #mainArea {
+    padding: 14px 16px;
+  }
+
+  .download-buttons,
+  .social-links {
+    flex-wrap: wrap;
+  }
+
+  #mainArea section {
+    grid-template-columns: 1fr;
+    gap: 8px;
+    padding: 16px 0;
+  }
+
+  #mainArea section.active,
+  #mainArea section:hover,
+  #mainArea section:focus-within {
+    margin-left: 0;
+    padding-left: 10px;
+  }
+
+  .sectionTitle h1 {
+    margin: 0;
+  }
+
+  .certification-group,
+  .job-card,
+  .project {
+    padding: 12px;
+    margin: 10px 0;
+  }
+
+  .keySkills {
+    gap: 6px;
+  }
+
+  .keySkills li {
+    font-size: 12px;
+    padding: 6px 10px;
+  }
 }
 
 /* ---------- PRINT / ATS ---------- */
