@@ -494,7 +494,7 @@ a:hover { text-decoration: underline; }
   #mainArea section {
     grid-template-columns: 1fr;
     gap: 10px;
-    padding: 20px 16px;
+    padding: 20px 0;
     position: relative;
     overflow: hidden;
   }
@@ -504,32 +504,28 @@ a:hover { text-decoration: underline; }
   #mainArea section:focus-within {
     background: transparent;
     margin-left: 0;
-    padding-left: 16px;
-    border-radius: 12px;
+    padding-left: 0;
+    border-radius: 0;
     outline: none;
   }
 
   #mainArea section.active::before,
   #mainArea section:hover::before,
   #mainArea section:focus-within::before {
-    content: "";
-    position: absolute;
-    inset: 4px 0;
-    border-radius: 12px;
-    background: linear-gradient(
-      90deg,
-      rgba(37,99,235,0.12),
-      rgba(124,58,237,0.05),
-      transparent
-    );
-    pointer-events: none;
-    z-index: 0;
+    content: none;
   }
 
   #mainArea section > * {
     position: relative;
     z-index: 1;
     min-width: 0;
+    max-width: 100%;
+  }
+
+  .sectionContent {
+    width: 100%;
+    max-width: 100%;
+    overflow: hidden;
   }
 
   .sectionContent,
@@ -539,6 +535,7 @@ a:hover { text-decoration: underline; }
   .certification-group,
   .job-card,
   .project {
+    max-width: 100%;
     overflow-wrap: anywhere;
     word-break: normal;
   }
@@ -572,8 +569,10 @@ a:hover { text-decoration: underline; }
   .certification-group,
   .job-card,
   .project {
+    width: 100%;
     padding: 14px;
     margin: 10px 0;
+    overflow: hidden;
   }
 
   .keySkills {
