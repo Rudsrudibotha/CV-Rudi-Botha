@@ -1,6 +1,6 @@
 const cvData = {
   name: "Rudi Botha",
-  title: "Automation Engineer | Software Engineer",
+  title: "Software Engineer | Automation Engineer",
   location: "254 Glover Avenue",
   phone: "+27 73 151 0877",
   email: "rudsrudibotha@gmail.com",
@@ -11,7 +11,7 @@ const cvData = {
     {
       title: "Professional Summary",
       body: [
-        "Automation-focused Software Engineering student completing a Bachelor of Computing (NQF 8), with hands-on exposure to business process automation, workflow automation, service management and systems integration. Skilled in Nintex RPA, Nintex K2, Freshdesk, Freshservice, Device42, SharePoint, SQL, C#, JavaScript, HTML/CSS and Microsoft Azure Fundamentals. Completed 29 platform certifications and applies customer-facing, administration and process improvement experience to deliver practical automation solutions."
+        "Software Engineering student completing a Bachelor of Computing (NQF 8), with project experience building responsive websites, database-backed web applications, a Java authentication system and a collaborative VR modelling application. Current Software Engineering Intern / Automation Engineer Intern supporting business process automation and systems integration work, with 29 relevant platform certifications and practical experience translating requirements into tested, customer-focused solutions."
       ]
     },
     {
@@ -52,7 +52,7 @@ const cvData = {
     {
       title: "Work Experience",
       items: [
-        { heading: "Automation Engineer Intern / Software Engineering Intern - First Technology Digital", detail: "Feb 2026 - Present", text: ["Support business process automation and systems integration solutions using Nintex RPA, Nintex K2, Freshdesk, Freshservice, OutSystems and Azure.", "Completed 29 platform certifications across Nintex, Freshworks, Device42 and Microsoft Azure Fundamentals to strengthen automation delivery capability.", "Apply workflow analysis, service management and low-code automation knowledge to improve process visibility and operational efficiency."] },
+        { heading: "Software Engineering Intern / Automation Engineer Intern - First Technology Digital", detail: "Feb 2026 - Present", text: ["Support software engineering internship projects focused on business process automation and systems integration using Nintex RPA, Nintex K2, Freshdesk, Freshservice, OutSystems and Azure.", "Assist with requirements review, workflow configuration, testing and documentation for automation solutions and service-management processes.", "Completed 29 platform certifications across Nintex, Freshworks, Device42 and Microsoft Azure Fundamentals to strengthen delivery capability."] },
         { heading: "Marketing & Digital Administrator - Adorable Bekkies Academy", detail: "Apr 2023 - Dec 2025", text: ["Managed business marketing, digital presence and website maintenance for an education business.", "Maintained the Adorable Bekkies Academy website and supported online communication with clients and parents.", "Coordinated digital administration tasks to improve consistency across business communication and customer-facing content."] },
         { heading: "Student Advisor & Events Planner - Belgium Campus ITversity", detail: "Jan 2022 - Apr 2023", text: ["Delivered school, expo and open-day presentations that generated 75+ leads per event.", "Coordinated recruitment events, career days and campus activities while supporting student engagement initiatives.", "Managed stakeholder communication with prospective students, schools and internal campus teams."] },
         { heading: "Admin Manager - Adorable Bekkies Academy", detail: "Jan 2019 - Dec 2021", text: ["Streamlined administration, operations and HR processes for a growing education business.", "Reduced operational costs by 18% through planning, supplier coordination and efficiency improvements.", "Managed budgeting, purchasing and staff development programs to support daily operations."] },
