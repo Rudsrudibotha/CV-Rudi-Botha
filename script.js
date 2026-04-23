@@ -431,6 +431,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const nav = document.querySelector(".cv-nav");
   const navToggle = document.querySelector(".cv-nav-toggle");
   const navLinks = document.querySelectorAll(".cv-nav-links a");
+  const mobileQuery = window.matchMedia("(max-width: 860px)");
 
   downloadCv.addEventListener("click", () => {
     generateCvPdf().catch((error) => {
@@ -442,7 +443,18 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   window.addEventListener("scroll", () => {
+    if (mobileQuery.matches) {
+      btn.classList.remove("show");
+      return;
+    }
+
     btn.classList.toggle("show", window.scrollY > 450);
+  });
+
+  mobileQuery.addEventListener("change", () => {
+    if (mobileQuery.matches) {
+      btn.classList.remove("show");
+    }
   });
 
   btn.addEventListener("click", () => {
@@ -463,7 +475,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const sections = document.querySelectorAll("#mainArea section");
   let hoveredSection = null;
-  const mobileQuery = window.matchMedia("(max-width: 860px)");
 
   const updateActiveSection = () => {
     if (hoveredSection && !mobileQuery.matches) return;
