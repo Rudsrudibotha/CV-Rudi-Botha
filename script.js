@@ -342,11 +342,11 @@ async function generateCvPdf() {
   doc.setFont("helvetica", "normal");
   doc.setFontSize(8.6);
   doc.text(`Location: ${cvData.location} | Phone: ${cvData.phone}`, page.margin + 39, y + 33);
-  doc.setFont("helvetica", "bold");
+  doc.setFont("helvetica", "normal");
   doc.text("Email:", page.margin + 39, y + 39);
   setTextColor(doc, colors.link);
   doc.setFont("helvetica", "normal");
-  drawLinkedText(doc, cvData.email, `mailto:${cvData.email}`, page.margin + 62, y + 39);
+  drawLinkedText(doc, cvData.email, `mailto:${cvData.email}`, page.margin + 51, y + 39);
   y += 54;
 
   drawCard(page.margin, y, contentWidth, 17);
