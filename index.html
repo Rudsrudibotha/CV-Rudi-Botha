@@ -37,6 +37,7 @@
         <h2>Software Engineer</h2>
       </div>
       <div id="contactDetails">
+        <p class="print-contact"><strong>Location:</strong> 254 Glover Avenue | <strong>Phone:</strong> +27 73 151 0877 | <strong>Email:</strong> rudsrudibotha@gmail.com</p>
         <ul>
           <li>📍 254 Glover Avenue</li>
           <li>📞 +27 73 151 0877</li>
@@ -46,7 +47,7 @@
     </div>
 
     <div class="download-buttons">
-      <a href="CV Rudi Botha3.pdf" download class="download-btn">Download CV</a>
+      <button type="button" class="download-btn" id="printCv">Print to PDF</button>
       <a href="FinalTranscript2025.pdf" download class="download-btn">Download Transcript</a>
     </div>
 
@@ -221,6 +222,11 @@
 <button class="back-to-top" id="backToTop" aria-label="Back to top">↑</button>
 
 <script>
+  const printCv = document.getElementById("printCv");
+  printCv.addEventListener("click", () => {
+    window.print();
+  });
+
   // show/hide button on scroll
   const btn = document.getElementById("backToTop");
   window.addEventListener("scroll", () => {
