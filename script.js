@@ -40,8 +40,12 @@ const cvData = {
       title: "Education",
       items: [
         { heading: "Belgium Campus ITversity", detail: "Bachelor of Computing (NQF 8), 2023 - Present", text: ["1st Year: Business Management 181", "2nd Year: Software Testing", "3rd Year: User Experience Design"] },
-        { heading: "University of South Africa", detail: "Certificate in Business & Economic Management (NQF 5), 2019" },
-        { heading: "Pretoria North High School", detail: "Matric Certificate, 2014" }
+        { heading: "Pretoria North High School", detail: "Matric Certificate, 2014" },
+        { heading: "Certifications", detail: "View my Certificates on LinkedIn", url: "https://www.linkedin.com/in/rudi-botha-8342bb159/details/certifications/" },
+        { heading: "University of South Africa", bullets: ["Certificate in Business & Economic Management (NQF 5), 2019"] },
+        { heading: "Freshworks", bullets: ["FreshWorks Certified Seller EX 06 March 2026 - 06 March 2028", "Solutions Engineer EX 09 March 2026 - 09 March 2028", "Solutions Engineer CX 17 March 2026 - 17 March 2028", "FreshService Advanced Product Certification 17 March 2026 - 17 March 2028", "FreshService Advanced Product Certification 17 March 2026 - 17 March 2028", "Device42 Sales Specialization 17 March 2026 -17 March 2028", "Device42 Sales Associate", "Device42 Technical Advanced", "Device42 Technical Associate"] },
+        { heading: "Microsoft", bullets: ["Microsoft Certified: Azure Fundamentals AZ 900"] },
+        { heading: "Nintex", bullets: ["K2 Citizen Developer 03 February 2026 - 03 February 2028", "K2 Business Analyst 03 February 2026 - 03 February 2028", "K2 Power User 03 February 2026 - 03 February 2028", "K2 Server Administrator 04 February 2026 - 04 February 2028", "K2 IT Developer 04 February 2026 - 04 February 2028", "K2 Five for SharePoint Practitioner 04 February 2026 - 04 February 2028", "K2 Connect Five - Expert 04 February 2026 - 04 February 2028", "K2 Cloud for SharePoint - Practitioner 05 February 2026 - 05 February 2028", "Promaster Certification for Process Manager 05 February 2026 - 05 February 2028", "Process Editor Certification for Process Manager 05 February 2026 - 05 February 2028", "Nintex Robotic Process Automation Manager 06 February 2026 - 06 February 2028", "Robotic Process Automation Manager Attended Automation Developer 13 February 2026 - 13 February 2028", "Nintex Robotic Process Automation Manager Developer 13 February 2026 - 13 February 2028", "Nintex Apps Certified Builder 20 April 2026 - 20 April 2028", "Automation SpecialistII Certification for Nintex Automation Cloud 20 April 2026 - 20 April 2028", "Nintex Document Generation Practitioner - Nintex DocGen for Salesforce 21 April 2026 - 21 April 2028", "Nintex Process Automation Practitioner - SharePoint 21 April 2026 - 21 April 2028", "Nintex DocGen for Salesforce Basics Certification 22 April 2026 - 22 April 2028", "Nintex Document Generation Expert - Nintex DocGen for Salesforce 22 April 2026 - 22 April 2028"] }
       ]
     },
     {
@@ -166,6 +170,18 @@ async function generateCvPdf() {
     doc.roundedRect(x, top, width, height, 3, 3, "S");
   }
 
+  function drawLinkedButton(text, url, x, top) {
+    doc.setFont("helvetica", "bold");
+    doc.setFontSize(8.6);
+    const width = doc.getTextWidth(text) + 8;
+    doc.setFillColor(37, 99, 235);
+    doc.roundedRect(x, top, width, 7, 2, 2, "F");
+    setTextColor(doc, [255, 255, 255]);
+    doc.text(text, x + 4, top + 4.8);
+    doc.link(x, top, width, 7, { url });
+    return width;
+  }
+
   function drawSectionTitle(title, top) {
     setTextColor(doc, colors.accent);
     doc.setFont("helvetica", "bold");
@@ -190,8 +206,12 @@ async function generateCvPdf() {
     if (section.items) {
       section.items.forEach((item) => {
         height += estimateTextHeight(doc, item.heading, bodyWidth, 4.2) + 4.2;
+        if (item.detail) height += estimateTextHeight(doc, item.detail, bodyWidth, 4) + 0.5;
         (item.text || []).forEach((text) => {
           height += estimateTextHeight(doc, text, bodyWidth, 4) + 0.5;
+        });
+        (item.bullets || []).forEach((bullet) => {
+          height += estimateTextHeight(doc, bullet, bodyWidth - 4, 4) + 0.5;
         });
         height += 6;
       });
@@ -260,12 +280,21 @@ async function generateCvPdf() {
       setTextColor(doc, colors.subtle);
       doc.setFont("helvetica", "italic");
       doc.setFontSize(8.6);
-      y = drawWrappedText(doc, item.detail, bodyX, y, bodyWidth, 4) + 0.5;
+      if (item.detail && item.url) {
+        drawLinkedButton(item.detail, item.url, bodyX, y - 4.5);
+        y += 6;
+      } else if (item.detail) {
+        y = drawWrappedText(doc, item.detail, bodyX, y, bodyWidth, 4) + 0.5;
+      }
       setTextColor(doc, colors.text);
       doc.setFont("helvetica", "normal");
       doc.setFontSize(8.9);
       (item.text || []).forEach((text) => {
         y = drawWrappedText(doc, text, bodyX, y, bodyWidth, 4) + 0.5;
+      });
+      (item.bullets || []).forEach((bullet) => {
+        doc.circle(bodyX, y - 1.2, 0.55, "F");
+        y = drawWrappedText(doc, bullet, bodyX + 4, y, bodyWidth - 4, 4) + 0.5;
       });
       y += 3;
     });
