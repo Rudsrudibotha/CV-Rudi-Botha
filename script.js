@@ -39,13 +39,14 @@ const cvData = {
     {
       title: "Education",
       items: [
-        { heading: "Belgium Campus ITversity", detail: "Bachelor of Computing (NQF 8), 2023 - Present", links: [{ label: "Exit Level Outcome", url: "Exit-Level-Outcomes-Bachelor-of-Computing.pdf" }], text: ["1st Year: Business Management 181", "2nd Year: Software Testing", "3rd Year: User Experience Design"] },
+        { heading: "Belgium Campus ITversity", detail: "Bachelor of Computing (NQF 8), 2023 - Present", links: [{ label: "Exit Level Outcome", url: "Exit-Level-Outcomes-Bachelor-of-Computing.pdf" }, { label: "Download Transcript", url: "FinalTranscript2025.pdf" }], text: ["1st Year: Business Management 181", "2nd Year: Software Testing", "3rd Year: User Experience Design"] },
         { heading: "Pretoria North High School", detail: "Matric Certificate, 2014" },
-        { heading: "Certifications", detail: "View my Certificates on LinkedIn", url: "https://www.linkedin.com/in/rudi-botha-8342bb159/details/certifications/" },
+        { heading: "Certifications" },
         { heading: "University of South Africa", bullets: ["Certificate in Business & Economic Management (NQF 5), 2019"] },
         { heading: "Freshworks", bullets: ["FreshWorks Certified Seller EX 06 March 2026 - 06 March 2028", "Solutions Engineer EX 09 March 2026 - 09 March 2028", "Solutions Engineer CX 17 March 2026 - 17 March 2028", "FreshService Advanced Product Certification 17 March 2026 - 17 March 2028", "FreshService Advanced Product Certification 17 March 2026 - 17 March 2028", "Device42 Sales Specialization 17 March 2026 -17 March 2028", "Device42 Sales Associate", "Device42 Technical Advanced", "Device42 Technical Associate"] },
         { heading: "Microsoft", bullets: ["Microsoft Certified: Azure Fundamentals AZ 900"] },
-        { heading: "Nintex", bullets: ["K2 Citizen Developer 03 February 2026 - 03 February 2028", "K2 Business Analyst 03 February 2026 - 03 February 2028", "K2 Power User 03 February 2026 - 03 February 2028", "K2 Server Administrator 04 February 2026 - 04 February 2028", "K2 IT Developer 04 February 2026 - 04 February 2028", "K2 Five for SharePoint Practitioner 04 February 2026 - 04 February 2028", "K2 Connect Five - Expert 04 February 2026 - 04 February 2028", "K2 Cloud for SharePoint - Practitioner 05 February 2026 - 05 February 2028", "Promaster Certification for Process Manager 05 February 2026 - 05 February 2028", "Process Editor Certification for Process Manager 05 February 2026 - 05 February 2028", "Nintex Robotic Process Automation Manager 06 February 2026 - 06 February 2028", "Robotic Process Automation Manager Attended Automation Developer 13 February 2026 - 13 February 2028", "Nintex Robotic Process Automation Manager Developer 13 February 2026 - 13 February 2028", "Nintex Apps Certified Builder 20 April 2026 - 20 April 2028", "Automation SpecialistII Certification for Nintex Automation Cloud 20 April 2026 - 20 April 2028", "Nintex Document Generation Practitioner - Nintex DocGen for Salesforce 21 April 2026 - 21 April 2028", "Nintex Process Automation Practitioner - SharePoint 21 April 2026 - 21 April 2028", "Nintex DocGen for Salesforce Basics Certification 22 April 2026 - 22 April 2028", "Nintex Document Generation Expert - Nintex DocGen for Salesforce 22 April 2026 - 22 April 2028"] }
+        { heading: "Nintex", bullets: ["K2 Citizen Developer 03 February 2026 - 03 February 2028", "K2 Business Analyst 03 February 2026 - 03 February 2028", "K2 Power User 03 February 2026 - 03 February 2028", "K2 Server Administrator 04 February 2026 - 04 February 2028", "K2 IT Developer 04 February 2026 - 04 February 2028", "K2 Five for SharePoint Practitioner 04 February 2026 - 04 February 2028", "K2 Connect Five - Expert 04 February 2026 - 04 February 2028", "K2 Cloud for SharePoint - Practitioner 05 February 2026 - 05 February 2028", "Promaster Certification for Process Manager 05 February 2026 - 05 February 2028", "Process Editor Certification for Process Manager 05 February 2026 - 05 February 2028", "Nintex Robotic Process Automation Manager 06 February 2026 - 06 February 2028", "Robotic Process Automation Manager Attended Automation Developer 13 February 2026 - 13 February 2028", "Nintex Robotic Process Automation Manager Developer 13 February 2026 - 13 February 2028", "Nintex Apps Certified Builder 20 April 2026 - 20 April 2028", "Automation SpecialistII Certification for Nintex Automation Cloud 20 April 2026 - 20 April 2028", "Nintex Document Generation Practitioner - Nintex DocGen for Salesforce 21 April 2026 - 21 April 2028", "Nintex Process Automation Practitioner - SharePoint 21 April 2026 - 21 April 2028", "Nintex DocGen for Salesforce Basics Certification 22 April 2026 - 22 April 2028", "Nintex Document Generation Expert - Nintex DocGen for Salesforce 22 April 2026 - 22 April 2028"] },
+        { heading: "", detail: "View my Certificates on LinkedIn", url: "https://www.linkedin.com/in/rudi-botha-8342bb159/details/certifications/" }
       ]
     },
     {
@@ -205,7 +206,7 @@ async function generateCvPdf() {
     if (section.bullets) height += section.bullets.reduce((sum, bullet) => sum + estimateTextHeight(doc, bullet, bodyWidth - 4, 4.2), 0) + 2;
     if (section.items) {
       section.items.forEach((item) => {
-        height += estimateTextHeight(doc, item.heading, bodyWidth, 4.2) + 4.2;
+        if (item.heading) height += estimateTextHeight(doc, item.heading, bodyWidth, 4.2) + 4.2;
         if (item.detail) height += estimateTextHeight(doc, item.detail, bodyWidth, 4) + 0.5;
         if (item.links) height += item.links.length * 4.5 + 0.5;
         (item.text || []).forEach((text) => {
@@ -274,10 +275,12 @@ async function generateCvPdf() {
     const bodyX = page.margin + 49;
     const bodyWidth = contentWidth - 54;
     section.items.forEach((item) => {
-      setTextColor(doc, colors.text);
-      doc.setFont("helvetica", "bold");
-      doc.setFontSize(9.5);
-      y = drawWrappedText(doc, item.heading, bodyX, y, bodyWidth, 4.2);
+      if (item.heading) {
+        setTextColor(doc, colors.text);
+        doc.setFont("helvetica", "bold");
+        doc.setFontSize(9.5);
+        y = drawWrappedText(doc, item.heading, bodyX, y, bodyWidth, 4.2);
+      }
       setTextColor(doc, colors.subtle);
       doc.setFont("helvetica", "italic");
       doc.setFontSize(8.6);
