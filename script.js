@@ -192,6 +192,27 @@ async function generateCvPdf() {
     doc.text(title.toUpperCase(), page.margin + 5, top + 6);
   }
 
+  function estimatePillsHeight(pills) {
+    const startX = page.margin + 49;
+    const maxX = page.width - page.margin - 5;
+    let x = startX;
+    let rows = 1;
+
+    doc.setFont("helvetica", "normal");
+    doc.setFontSize(8.4);
+
+    pills.forEach((pill) => {
+      const pillWidth = doc.getTextWidth(pill) + 8;
+      if (x > startX && x + pillWidth > maxX) {
+        rows += 1;
+        x = startX;
+      }
+      x += pillWidth + 3;
+    });
+
+    return rows * 8 + 8;
+  }
+
   function sectionHeight(section) {
     const bodyX = page.margin + 49;
     const bodyWidth = contentWidth - 54;
@@ -221,7 +242,7 @@ async function generateCvPdf() {
       });
     }
     if (section.projects) height += section.projects.length * 25 + 3;
-    if (section.pills) height += 28;
+    if (section.pills) height += estimatePillsHeight(section.pills);
     return Math.max(height, 25);
   }
 
