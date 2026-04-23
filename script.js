@@ -39,7 +39,7 @@ const cvData = {
     {
       title: "Education",
       items: [
-        { heading: "Belgium Campus ITversity", detail: "Bachelor of Computing (NQF 8), 2023 - Present", text: ["1st Year: Business Management 181", "2nd Year: Software Testing", "3rd Year: User Experience Design"] },
+        { heading: "Belgium Campus ITversity", detail: "Bachelor of Computing (NQF 8), 2023 - Present", links: [{ label: "Exit Level Outcome", url: "Exit-Level-Outcomes-Bachelor-of-Computing.pdf" }], text: ["1st Year: Business Management 181", "2nd Year: Software Testing", "3rd Year: User Experience Design"] },
         { heading: "Pretoria North High School", detail: "Matric Certificate, 2014" },
         { heading: "Certifications", detail: "View my Certificates on LinkedIn", url: "https://www.linkedin.com/in/rudi-botha-8342bb159/details/certifications/" },
         { heading: "University of South Africa", bullets: ["Certificate in Business & Economic Management (NQF 5), 2019"] },
@@ -207,6 +207,7 @@ async function generateCvPdf() {
       section.items.forEach((item) => {
         height += estimateTextHeight(doc, item.heading, bodyWidth, 4.2) + 4.2;
         if (item.detail) height += estimateTextHeight(doc, item.detail, bodyWidth, 4) + 0.5;
+        if (item.links) height += item.links.length * 4.5 + 0.5;
         (item.text || []).forEach((text) => {
           height += estimateTextHeight(doc, text, bodyWidth, 4) + 0.5;
         });
@@ -286,6 +287,12 @@ async function generateCvPdf() {
       } else if (item.detail) {
         y = drawWrappedText(doc, item.detail, bodyX, y, bodyWidth, 4) + 0.5;
       }
+      (item.links || []).forEach((link) => {
+        setTextColor(doc, colors.link);
+        doc.setFont("helvetica", "bold");
+        drawLinkedText(doc, link.label, link.url, bodyX, y);
+        y += 4.5;
+      });
       setTextColor(doc, colors.text);
       doc.setFont("helvetica", "normal");
       doc.setFontSize(8.9);
