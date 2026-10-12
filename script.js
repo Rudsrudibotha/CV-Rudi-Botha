@@ -4,7 +4,7 @@ const cvData = {
   location: "254 Glover Avenue",
   phone: "+27 73 151 0877",
   email: "rudsrudibotha@gmail.com",
-  onlineCv: "https://rudsrudibotha.github.io/CV-Setup/#experience",
+  onlineCv: "https://rudsrudibotha.github.io/CV-Rudi-Botha/#experience",
   linkedin: "https://www.linkedin.com/in/rudi-botha-8342bb159/",
   github: "https://github.com/Rudsrudibotha",
   sections: [
