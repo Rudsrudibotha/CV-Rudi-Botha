@@ -305,6 +305,26 @@ a:hover { text-decoration: underline; }
   color: #f8fafc;
 }
 
+.job-card h4 {
+  margin: 12px 0 6px;
+  color: #93c5fd;
+  font-size: 13px;
+  letter-spacing: 0.04em;
+}
+
+.experience-highlights {
+  margin: 0;
+  padding-left: 18px;
+}
+
+.experience-highlights li {
+  margin-bottom: 6px;
+}
+
+.experience-highlights li:last-child {
+  margin-bottom: 0;
+}
+
 .certification-group ul {
   margin: 0;
   padding-left: 18px;
